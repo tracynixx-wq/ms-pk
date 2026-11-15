@@ -104,6 +104,9 @@ void UpdateService::downloadAndInstall()
         const QString appDir = QCoreApplication::applicationDirPath();
         const QString exePath = QDir(appDir).filePath(QFileInfo(QCoreApplication::applicationFilePath()).fileName());
         const QString scriptPath = QDir(temp).filePath(QStringLiteral("message-desktop-update.ps1"));
+        const QString zipPathEscaped = QString(zipPath).replace("'", "''");
+        const QString appDirEscaped = QString(appDir).replace("'", "''");
+        const QString exePathEscaped = QString(exePath).replace("'", "''");
         QString script = QStringLiteral(
             "$ErrorActionPreference='Stop'\n"
             "$pidToWait=%1\n"
@@ -123,9 +126,9 @@ void UpdateService::downloadAndInstall()
             "Start-Process -FilePath $exe "
             "} catch { if ((Test-Path $backup) -and !(Test-Path $app)) { Move-Item -LiteralPath $backup -Destination $app }; exit 1 }"
         ).arg(QCoreApplication::applicationPid())
-         .arg(zipPath.replace("'", "''"))
-         .arg(appDir.replace("'", "''"))
-         .arg(exePath.replace("'", "''"));
+         .arg(zipPathEscaped)
+         .arg(appDirEscaped)
+         .arg(exePathEscaped);
         QFile scriptFile(scriptPath);
         if (!scriptFile.open(QIODevice::WriteOnly | QIODevice::Truncate) ||
             scriptFile.write(script.toUtf8()) != script.toUtf8().size()) {

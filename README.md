@@ -22,7 +22,7 @@ Requirements:
 PowerShell example (adjust the Qt installation path if needed):
 
 ```powershell
-cmake -S . -B build -DCMAKE_PREFIX_PATH="C:/Qt/6.8.3/msvc2022_64"
+cmake -S . -B build -G Ninja -DCMAKE_PREFIX_PATH="C:/Qt/6.8.3/msvc2022_64" -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 ```
 

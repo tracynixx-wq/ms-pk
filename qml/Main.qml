@@ -101,66 +101,7 @@ ApplicationWindow {
         }
     }
 
-    Popup {
-        id: profilePopup
-        parent: Overlay.overlay
-        anchors.centerIn: parent
-        width: 390
-        height: 430
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-        padding: 0
-        enter: Transition {
-            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 170 }
-            NumberAnimation { property: "scale"; from: 0.96; to: 1; duration: 170 }
-        }
-        exit: Transition {
-            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 130 }
-            NumberAnimation { property: "scale"; from: 1; to: 0.97; duration: 130 }
-        }
-        background: Rectangle {
-            radius: 22
-            color: "#1a2230"
-            border.color: "#303b50"
-            border.width: 1
-        }
-
-        ColumnLayout {
-            anchors.fill: parent
-            anchors.margins: 26
-            spacing: 14
-
-            RowLayout {
-                Layout.fillWidth: true
-                Text { text: "Профиль"; color: "#f3f5fb"; font.pixelSize: 21; font.bold: true }
-                Item { Layout.fillWidth: true }
-                ToolButton { text: "✕"; onClicked: profilePopup.close() }
-            }
-
-            Item {
-                Layout.alignment: Qt.AlignHCenter
-                width: 88; height: 88
-                Rectangle {
-                    anchors.fill: parent
-                    radius: 44
-                    color: "#35436b"
-                    Text { anchors.centerIn: parent; text: "?"; color: "#e1e7ff"; font.pixelSize: 38; font.bold: true }
-                }
-            }
-            Text { Layout.fillWidth: true; text: "Ваш профиль"; color: "#f0f3fa"; font.pixelSize: 18; font.bold: true; horizontalAlignment: Text.AlignHCenter }
-            Text { Layout.fillWidth: true; text: "Подключение аккаунта будет добавлено после интеграции с сервером Message."; color: "#929eb2"; font.pixelSize: 12; wrapMode: Text.WordWrap; horizontalAlignment: Text.AlignHCenter }
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#30394a" }
-            Label { text: "Статус"; color: "#8996ab" }
-            Label { text: "Локальный интерфейс • аккаунт не подключён"; color: "#c5cede"; font.pixelSize: 12; wrapMode: Text.WordWrap }
-            Item { Layout.fillHeight: true }
-            Button {
-                Layout.fillWidth: true
-                text: "Закрыть"
-                onClicked: profilePopup.close()
-            }
-        }
-    }
+    ProfileView { id: profilePopup }
 
     RowLayout {
         anchors.fill: parent

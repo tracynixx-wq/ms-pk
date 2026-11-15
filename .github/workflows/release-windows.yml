@@ -1,0 +1,52 @@
+name: Publish Windows desktop release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: windows
+          target: desktop
+          arch: win64_msvc2022_64
+          cache: true
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Package application
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $package = Join-Path $PWD 'package'
+          New-Item -ItemType Directory -Force -Path $package | Out-Null
+          Copy-Item 'build/MessageDesktop.exe' $package
+          windeployqt --qmldir qml --release (Join-Path $package 'MessageDesktop.exe')
+          Compress-Archive -Path (Join-Path $package '*') -DestinationPath 'Message-Desktop-Windows-x64.zip' -Force
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Message-Desktop-Windows-x64.zip
+          generate_release_notes: true

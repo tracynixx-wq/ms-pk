@@ -346,7 +346,7 @@ ApplicationWindow {
                                 anchors.leftMargin: 14
                                 spacing: 4
                                 Label { text: "Message Desktop"; color: "#e1e6ef" }
-                                Label { text: "Версия 0.1.0 • Native Qt"; color: "#8491a6"; font.pixelSize: 10 }
+                                Label { text: "Версия 0.2.0 • Native Qt"; color: "#8491a6"; font.pixelSize: 10 }
                             }
                         }
                     }

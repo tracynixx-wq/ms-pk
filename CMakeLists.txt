@@ -6,13 +6,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2 Network)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(MessageDesktop
     WIN32
     src/main.cpp
+    src/UpdateService.cpp
+    src/UpdateService.h
 )
 
 qt_add_qml_module(MessageDesktop
@@ -20,12 +22,14 @@ qt_add_qml_module(MessageDesktop
     VERSION 1.0
     QML_FILES
         qml/Main.qml
+        qml/ProfileView.qml
 )
 
 target_link_libraries(MessageDesktop
     PRIVATE
         Qt6::Quick
         Qt6::QuickControls2
+        Qt6::Network
 )
 
 if(MSVC)

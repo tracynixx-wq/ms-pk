@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setApplicationName("Message");
     app.setOrganizationName("Message");
-    app.setApplicationVersion("0.1.0");
+    app.setApplicationVersion("0.2.0");
 
     QQuickStyle::setStyle("Basic");
 

@@ -26,6 +26,7 @@ ApplicationWindow {
     Component.onCompleted: {
         x = Math.max(0, (Screen.width - width) / 2)
         y = Math.max(0, (Screen.height - height) / 2)
+        updateService.checkForUpdates()
     }
 
     Drawer {
@@ -287,7 +288,39 @@ ApplicationWindow {
                                 anchors.leftMargin: 14
                                 spacing: 4
                                 Label { text: "Message Desktop"; color: "#e1e6ef" }
-                                Label { text: "Версия 0.2.0 • Native Qt"; color: "#8491a6"; font.pixelSize: 10 }
+                                Label { text: "Версия 0.3.0 • Native Qt"; color: "#8491a6"; font.pixelSize: 10 }
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            radius: 12
+                            color: "#222c3d"
+                            implicitHeight: updateColumn.implicitHeight + 24
+                            ColumnLayout {
+                                id: updateColumn
+                                anchors.fill: parent
+                                anchors.margins: 12
+                                spacing: 8
+                                Label { text: "Обновления"; color: "#e1e6ef"; font.bold: true }
+                                Label {
+                                    Layout.fillWidth: true
+                                    text: updateService.status
+                                    color: "#8491a6"
+                                    font.pixelSize: 10
+                                    wrapMode: Text.WordWrap
+                                }
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    Button {
+                                        text: "Проверить"
+                                        onClicked: updateService.checkForUpdates()
+                                    }
+                                    Button {
+                                        visible: updateService.updateAvailable
+                                        text: "Установить"
+                                        onClicked: updateService.downloadAndInstall()
+                                    }
+                                }
                             }
                         }
                     }

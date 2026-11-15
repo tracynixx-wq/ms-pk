@@ -20,7 +20,7 @@ The current interface includes a compact navigation rail, a slide-out section me
 
 Requirements:
 - CMake 3.24+
-- Qt 6.5+ with Qt Quick and Qt Quick Controls 2
+- Qt 6.5+ with Qt Quick, Qt Quick Controls 2 and Qt Quick Dialogs
 - C++20 compiler
 
 PowerShell example (adjust the Qt installation path if needed):

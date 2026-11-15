@@ -12,6 +12,10 @@ This repository contains an early native UI foundation. It is not yet a connecte
 
 The current interface includes a compact navigation rail, a slide-out section menu, a centered profile dialog, search-field presentation, and a settings view. These are local UI elements and do not claim to connect to an account.
 
+## Desktop installation and update requirement
+
+**An ordinary user must never be required to restart or reboot Windows to install or update Message Desktop.** Updates should be applied by the application/updater with a normal app restart at most. The updater must handle replacing files safely (for example, stage the update and apply it after the app closes), preserve the user's account session and local data, and clearly report failures with a recoverable path. Do not make a full PC reboot part of the normal installation or update flow.
+
 ## Build locally
 
 Requirements:

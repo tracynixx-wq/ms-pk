@@ -9,6 +9,14 @@ on:
       - '**.qml'
       - 'CMakeLists.txt'
       - '.github/workflows/build-windows.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.cpp'
+      - '**.h'
+      - '**.qml'
+      - 'CMakeLists.txt'
+      - '.github/workflows/build-windows.yml'
   workflow_dispatch:
 
 permissions:

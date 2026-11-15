@@ -5,12 +5,12 @@ Native Windows desktop client foundation for Message, built with **C++20, Qt 6 a
 ## Current status
 
 This repository contains an early native UI foundation. It is not yet a connected messenger:
-- account authentication and session persistence are not implemented;
+- account authentication and cloud profile synchronization are not implemented; the profile editor currently saves locally on this Windows installation;
 - live chat transport and message history are not implemented;
 - calls, push notifications and end-to-end encryption are not implemented;
 - automatic updates are not implemented.
 
-The current interface includes a compact navigation rail, a slide-out section menu, a centered profile dialog, search-field presentation, and a settings view. These are local UI elements and do not claim to connect to an account.
+The current interface includes a compact navigation rail, a slide-out section menu, a centered editable profile with avatar and cover image selection, profile gradients, bio and status fields, search-field presentation, and a settings view. Profile data is stored locally using Qt Settings and is not yet synchronized with the Message account.
 
 ## Desktop installation and update requirement
 
@@ -32,7 +32,7 @@ cmake --build build --config Release
 
 ## Windows CI package
 
-Relevant pushes to `main` and manual workflow dispatches run the Windows build. A successful run publishes a portable deployment ZIP named `Message-Desktop-Windows-x64` as a GitHub Actions artifact for 14 days.
+Relevant pushes to `main` and manual workflow dispatches run the Windows build. A successful run publishes a portable deployment ZIP named `Message-Desktop-Windows-x64` as a GitHub Actions artifact for 14 days. Pushing a version tag such as `v0.3.0` also builds and publishes a GitHub Release asset. The in-app updater checks the latest release and replaces the app folder after closing Message; user settings remain in the Windows user profile, outside the app folder.
 
 Open **Actions → Windows desktop build → latest successful run → Artifacts** to retrieve it.
 

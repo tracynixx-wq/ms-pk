@@ -111,6 +111,14 @@ ApplicationWindow {
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
         padding: 0
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 170 }
+            NumberAnimation { property: "scale"; from: 0.96; to: 1; duration: 170 }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 130 }
+            NumberAnimation { property: "scale"; from: 1; to: 0.97; duration: 130 }
+        }
         background: Rectangle {
             radius: 22
             color: "#1a2230"

@@ -8,8 +8,8 @@ Popup {
     id: root
     parent: Overlay.overlay
     anchors.centerIn: parent
-    width: Math.min(560, window.width - 48)
-    height: Math.min(740, window.height - 48)
+    width: Math.min(560, Screen.width - 48)
+    height: Math.min(740, Screen.height - 100)
     modal: true
     focus: true
     padding: 0

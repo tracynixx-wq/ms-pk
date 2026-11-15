@@ -208,8 +208,8 @@ ApplicationWindow {
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 20
-                spacing: 18
+                anchors.margins: window.compactMode ? 14 : 20
+                spacing: window.compactMode ? 12 : 18
 
                 RowLayout {
                     Layout.fillWidth: true

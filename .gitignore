@@ -8,3 +8,6 @@
 *.jsc
 .DS_Store
 Thumbs.db
+/package/
+*.zip
+/MessageDesktop.exe
